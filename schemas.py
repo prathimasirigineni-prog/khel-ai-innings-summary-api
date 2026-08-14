@@ -1,5 +1,21 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
+
+
+class BallEvent(BaseModel):
+    over_ball: str
+    striker: str
+    bowler: str
+    runs: int
+    extras: int = 0
+    is_legal: bool = True
+    extra_type: Optional[str] = None
+    wicket: bool = False
+
+
+class InningsSummaryRequest(BaseModel):
+    innings_id: int
+    ball_events: List[BallEvent]
 
 
 class BatterSummary(BaseModel):
